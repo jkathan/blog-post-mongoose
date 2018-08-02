@@ -1,0 +1,27 @@
+{
+  "name": "blog-post-mongoose",
+  "version": "1.0.0",
+  "description": "\"blog post api creation\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkathan/blog-post-mongoose.git"
+  },
+  "keywords": [
+    "mongoose",
+    "blog"
+  ],
+  "author": "jkathan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jkathan/blog-post-mongoose/issues"
+  },
+  "homepage": "https://github.com/jkathan/blog-post-mongoose#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
