@@ -128,7 +128,9 @@ function runServer(databaseUrl, port = PORT) {
         reject(err);
       });
   });
+});
 }
+
 function closeServer() {
   return mongoose.disconnect().then(() => {
     return new Promise((resolve, reject) => {
