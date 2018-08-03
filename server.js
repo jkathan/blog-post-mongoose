@@ -7,16 +7,17 @@ const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 
 const { PORT, DATABASE_URL } = require("./config");
-const { Restaurant } = require("./models");
+const { Blog } = require("./models");
 
 const app = express();
 
-app.use(morgan('common'))
+app.use(morgan('common'));
+
 app.use(express.json());
 
 app.get("/posts", (req, res) => {
-  BlogPost.find()
-    .then(restaurants => {
+  Blog.find()
+    .then(blogPost => {
       res.json({
         blogPosts: blogPosts.map(post => post.serialize())
       });
@@ -28,7 +29,7 @@ app.get("/posts", (req, res) => {
 });
 
 app.get("/posts/:id", (req, res) => {
-  BlogPost
+  Blog
     .findById(req.params.id)
     .then(post => res.json(post.serialize()))
     .catch(err => {
@@ -48,7 +49,7 @@ app.post("/posts", (req, res) => {
     }
   }
 
-  BlogPost.create({
+  Blog.create({
     title: req.body.title,
     content: req.body.content,
     author: req.body.author,
@@ -78,21 +79,21 @@ app.put("/posts/:id", (req, res) => {
     }
   });
 
-  BlogPost
+  Blog
     .findByIdAndUpdate(req.params.id, { $set: toUpdate }, { new: true })
     .then(updatedBlogPost => res.status(204).end())
     .catch(err => res.status(500).json({ message: "Internal server error" }));
 });
 
 app.delete("/posts/:id", (req, res) => {
-  BlogPost.findByIdAndRemove(req.params.id)
+  Blog.findByIdAndRemove(req.params.id)
     .then(() => res.status(204).end())
     .catch(err => res.status(500).json({ message: "Internal server error" }));
 });
 
 
 app.delete('/:id', (req, res) => {
-  BlogPost
+  Blog
     .findByIdAndRemove(req.params.id)
     .then(() => {
       console.log(`Deleted blog post with id \`${req.params.id}\``);
@@ -104,9 +105,6 @@ app.delete('/:id', (req, res) => {
 app.use("*", function(req, res) {
   res.status(404).json();
 });
-
-module.exports = router;
-
 
 let server;
 
