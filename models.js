@@ -17,7 +17,7 @@ blogPostSchema.virtual("completeName").get(function() {
   return `${this.author.firstName} ${this.author.lastName}`.trim();
 });
 
-restaurantSchema.methods.serialize = function() {
+blogPostSchema.methods.serialize = function() {
   return {
     id: this._id,
     title: this.title,
