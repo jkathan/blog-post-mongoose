@@ -46,4 +46,4 @@ blogPostSchema.methods.serialize = function() {
 var Author = mongoose.model('Author', authorSchema);
 const Blog = mongoose.model("Blog", blogPostSchema);
 
-module.exports = { Blog };
+module.exports = { Author, Blog };
